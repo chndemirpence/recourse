@@ -76,8 +76,8 @@ computed tokens the reference adapter provides:
 
 `{{goal}}` (user goal or `goal_default`), `{{account_suffix}}` (`" (account: …)"` when an
 `account` field is given, else empty), `{{amount}}`, `{{date}}`, and two convenience clauses
-that read cleanly whether or not the value is present: `{{amount_clause}}` (`" of …"`) and
-`{{date_clause}}` (`" dated …"`).
+that read cleanly whether or not the value is present: `{{amount_clause}}` (`" of …"`),
+`{{date_clause}}` (`" dated …"`) and `{{date_on}}` (`" on …"`).
 
 Any token in an artifact **must** resolve to a declared field or a computed token — the
 validator enforces this so templates never ship with dangling placeholders.

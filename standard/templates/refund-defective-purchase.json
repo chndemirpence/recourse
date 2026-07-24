@@ -1,0 +1,41 @@
+{
+  "odts_version": "0.1",
+  "id": "refund-defective-purchase",
+  "version": "1.0.0",
+  "title": "Refund a defective / not-as-described purchase",
+  "category": "purchases",
+  "summary": "Full refund or replacement for a defective or not-as-described item, with a chargeback fallback.",
+  "unit": "money",
+  "est_value_hint": 80,
+  "jurisdictions": ["*", "EU", "UK"],
+  "channel": "Email + return portal",
+  "goal_default": "Please issue a full refund or send a replacement, along with a prepaid return label.",
+  "fields": [
+    { "name": "target", "label": "Seller", "required": true },
+    { "name": "amount", "label": "Amount paid", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Items that are faulty or not as described are commonly covered by statutory rights or buyer protection.",
+      "basis": "EU/UK consumer sales rights for non-conforming goods (e.g. UK Consumer Rights Act 2015).",
+      "jurisdiction": "UK"
+    },
+    {
+      "claim": "A card chargeback for 'not as described' is a strong fallback if the seller refuses.",
+      "basis": "Card-scheme chargeback rules; marketplace buyer-protection programs.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Merchant refund / replacement",
+    "Card chargeback (not as described)",
+    "Marketplace buyer-protection claim"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Defective / not-as-described item — refund requested",
+    "body": "To: {{target}} Support\n\nHello,\n\nThe item I received is defective / not as described. {{goal}}\n\nI have photos documenting the issue and can provide them. If this is unresolved within 7 business days, I'll open a buyer-protection claim and a card dispute.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

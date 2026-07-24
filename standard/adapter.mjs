@@ -20,6 +20,7 @@ export function context(template, fields = {}) {
     amount_clause: amount ? ` of ${amount}` : "",
     date,
     date_clause: date ? ` dated ${date}` : "",
+    date_on: date ? ` on ${date}` : "",
     goal: f.goal || template.goal_default || "",
   };
   // declared fields override/extend the defaults above
@@ -45,7 +46,7 @@ export function tokensUsed(template) {
 export function resolvableTokens(template) {
   return new Set([
     "name", "target", "account", "account_suffix",
-    "amount", "amount_clause", "date", "date_clause", "goal",
+    "amount", "amount_clause", "date", "date_clause", "date_on", "goal",
     ...(template.fields || []).map((x) => x.name),
   ]);
 }

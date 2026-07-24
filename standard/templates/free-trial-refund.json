@@ -1,0 +1,40 @@
+{
+  "odts_version": "0.1",
+  "id": "free-trial-refund",
+  "version": "1.0.0",
+  "title": "Free-trial auto-renewal refund",
+  "category": "subscriptions",
+  "summary": "A free trial converted to paid without clear consent — request a full refund and cancellation.",
+  "unit": "money",
+  "est_value_hint": 70,
+  "jurisdictions": ["*", "US", "EU"],
+  "channel": "Email / in-app",
+  "goal_default": "Please refund the charge in full and cancel the plan.",
+  "fields": [
+    { "name": "target", "label": "Company", "required": true },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Unclear trial-to-paid conversions have been found deceptive by regulators.",
+      "basis": "FTC actions on negative-option / auto-renewal disclosures; EU unfair commercial practices.",
+      "jurisdiction": "US"
+    },
+    {
+      "claim": "You can ask them to point to where explicit auto-renewal consent was obtained.",
+      "basis": "Consent/disclosure requirements for auto-renewals.",
+      "jurisdiction": "EU"
+    }
+  ],
+  "ladder": [
+    "Refund request",
+    "Chargeback for an undisclosed auto-renewal",
+    "Consumer regulator complaint (deceptive conversion)"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Refund — free trial auto-converted without clear consent",
+    "body": "To: {{target}} Support\n\nHello,\n\nMy free trial converted to a paid plan without clear, conspicuous consent. {{goal}}\n\nPlease point to where explicit auto-renewal consent was obtained; otherwise I consider this a deceptive conversion and will seek a chargeback.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

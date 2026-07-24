@@ -1,0 +1,45 @@
+{
+  "odts_version": "0.1",
+  "id": "negotiate-a-bill",
+  "version": "1.0.0",
+  "title": "Negotiate a bill down",
+  "category": "bills",
+  "summary": "Retention-line call/chat script using the loyalty-penalty angle; lock the new rate in writing.",
+  "unit": "money",
+  "est_value_hint": 240,
+  "jurisdictions": ["*"],
+  "channel": "Retention line / chat (script)",
+  "goal_default": "I'd like to lower my monthly bill to stay.",
+  "fields": [
+    { "name": "target", "label": "Provider", "required": true },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Long-term customers often pay a 'loyalty penalty' — new-customer rates are the anchor to ask for.",
+      "basis": "Regulator findings on loyalty penalties (e.g. UK CMA super-complaint on loyalty pricing).",
+      "jurisdiction": "UK"
+    },
+    {
+      "claim": "Retention desks hold discounts that front-line agents cannot offer.",
+      "basis": "Common industry retention practice.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Always get the new rate and how long it is locked, in writing.",
+      "basis": "Evidentiary best practice for enforcing the agreed price.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Front-line retention offer",
+    "Ask for the loyalty / retention department",
+    "Cite a competitor price and be ready to switch",
+    "Confirm the new rate + duration in writing"
+  ],
+  "artifact": {
+    "type": "script",
+    "body": "CALL / CHAT SCRIPT — {{target}} retention\n\nOpening:\n\"Hi, I've been a customer for a while and my rate has crept up. I'm comparing providers today. {{goal}}\"\n\nIf offered a small discount:\n\"I appreciate that — but new customers are paying less than me. Can you connect me to the loyalty / retention team?\"\n\nClose:\n\"Great. Please confirm the new monthly rate and how many months it's locked, in writing to my email.\"\n\nNotes: stay friendly, be ready to name a competitor price, and be willing to schedule a callback.\n\n— {{name}}"
+  },
+  "disclaimer": "This is information to help you prepare your own call. It is not legal advice and guarantees no outcome."
+}

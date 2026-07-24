@@ -1,0 +1,45 @@
+{
+  "odts_version": "0.1",
+  "id": "escalate-complaint",
+  "version": "1.0.0",
+  "title": "Escalate an unresolved complaint",
+  "category": "disputes",
+  "summary": "Take an unresolved issue to the executive/complaints team with a clear resolution and a regulator fallback.",
+  "unit": "time",
+  "est_value_hint": 2,
+  "jurisdictions": ["*"],
+  "channel": "Executive email + regulator",
+  "goal_default": "The resolution I am seeking is: [state it clearly].",
+  "fields": [
+    { "name": "target", "label": "Company", "required": true },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Executive / complaints teams resolve what front-line staff cannot.",
+      "basis": "Common corporate escalation structure (office of the president / executive relations).",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "A clear, dated summary of prior attempts strengthens the escalation.",
+      "basis": "Complaint-handling best practice.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Naming the specific regulator or ombudsman signals you are serious.",
+      "basis": "Availability of sector regulators / ombudsman schemes.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Formal complaint to the executive / complaints team",
+    "Regulator / ombudsman / BBB filing",
+    "Public review + social escalation"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Formal complaint — request for resolution",
+    "body": "To: {{target}} — Office of the President / Complaints\n\nHello,\n\nDespite prior attempts, my issue remains unresolved. Summary: [what happened, dates, reference numbers].\n\n{{goal}} Please respond within 7 business days. If it remains unresolved, I will file with the relevant regulator / ombudsman and share my experience publicly.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

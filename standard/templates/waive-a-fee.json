@@ -1,0 +1,39 @@
+{
+  "odts_version": "0.1",
+  "id": "waive-a-fee",
+  "version": "1.0.0",
+  "title": "Waive a late / overdraft fee",
+  "category": "billing",
+  "summary": "Ask for a one-time courtesy waiver as a customer in good standing; set up a safeguard so it won't recur.",
+  "unit": "money",
+  "est_value_hint": 35,
+  "jurisdictions": ["*"],
+  "channel": "Phone / secure message (script)",
+  "goal_default": "I'd like to request a one-time courtesy waiver of this fee.",
+  "fields": [
+    { "name": "target", "label": "Bank / provider", "required": true },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "First-time or rare fees are frequently waived as a one-time courtesy for customers in good standing.",
+      "basis": "Standard goodwill-adjustment practice at banks and providers.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Setting up alerts or autopay while you ask shows good faith and prevents a repeat.",
+      "basis": "Practical safeguard that strengthens the request.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Front-line courtesy waiver",
+    "Ask for a supervisor",
+    "Mention switching if you are a long-time customer"
+  ],
+  "artifact": {
+    "type": "script",
+    "body": "MESSAGE / SCRIPT — {{target}}\n\n\"Hi, I've been a customer in good standing and just noticed a fee. {{goal}} I've already taken steps so it won't happen again — could you waive it as a goodwill gesture?\"\n\nIf declined:\n\"I understand — could you check with a supervisor? I'd really like to keep my account in good standing.\"\n\n— {{name}}"
+  },
+  "disclaimer": "This is information to help you prepare your own request. It is not legal advice and guarantees no outcome."
+}

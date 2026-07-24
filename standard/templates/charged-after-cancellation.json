@@ -1,0 +1,42 @@
+{
+  "odts_version": "0.1",
+  "id": "charged-after-cancellation",
+  "version": "1.0.0",
+  "title": "Refund charges billed after cancellation",
+  "category": "subscriptions",
+  "summary": "You cancelled and hold a confirmation, yet were billed — demand a refund, escalate to chargeback with proof.",
+  "unit": "money",
+  "est_value_hint": 90,
+  "jurisdictions": ["*"],
+  "channel": "Email + chargeback",
+  "goal_default": "Please refund all charges applied after my cancellation date and confirm in writing.",
+  "fields": [
+    { "name": "target", "label": "Company", "required": true },
+    { "name": "account", "label": "Account or reference", "required": false },
+    { "name": "date", "label": "Cancellation date", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "With a cancellation confirmation, card issuers routinely issue chargebacks for continued billing.",
+      "basis": "Card-scheme chargeback rules for cancelled recurring services.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Reference your confirmation number and cancellation date explicitly to speed the reversal.",
+      "basis": "Evidentiary best practice.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Refund demand with the cancellation confirmation attached",
+    "Card-issuer chargeback (banks accept these routinely)",
+    "Consumer regulator complaint"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Refund — charged after a confirmed cancellation{{account_suffix}}",
+    "body": "To: {{target}} Billing\n\nHello,\n\nI cancelled{{date_on}} and hold a cancellation confirmation, yet I continued to be billed. {{goal}}\n\nIf this is unresolved within 7 business days I will present my cancellation confirmation to my card issuer for a chargeback.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}
