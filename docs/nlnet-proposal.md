@@ -58,11 +58,25 @@ an open standard + commons of consumer-rights knowledge that the wider ecosystem
 
 ## Have you been involved with projects/organisations relevant to this project before?
 
-Recourse is built and maintained by an independent solo engineer. The existing repository — a
-zero-dependency vanilla-JS PWA with a pure, tested agent/template/provider architecture,
-IndexedDB persistence with graceful fallback, and a 24-check headless test suite — is entirely
-my own work and demonstrates the ability to deliver the milestones. I am the sole author and
-copyright holder; it is published here under AGPL-3.0.
+I am an independent developer. I earned my computer-programmer certificate in 1991 and have
+been writing software ever since — more than three decades, most of it alone. In that time I
+have designed and shipped many complete applications end to end, from interface to data layer
+to autonomous systems, including a large (~91,000-line) engine built entirely on my own. The
+Recourse prototype in this repository — a zero-dependency, tested PWA (24 headless checks) with
+a clean agent/template/provider architecture and local IndexedDB storage — is my own work, and
+I am its sole author and copyright holder (AGPL-3.0). I can deliver these milestones because
+delivering hard software alone is what I have done my whole working life.
+
+But the reason I am building *this* is personal. I have been on the losing side of these
+fights. I know what it is to be worn down by hold music and cancellation mazes, to be charged
+something I could not get reversed, to send letter after letter and be met with silence — and
+finally to give up, not because I was wrong, but because the process is designed so that
+ordinary people give up. That asymmetry — of time, of knowledge, of persistence — is not an
+accident; it is the business model. Recourse is the tool I wish I had had back then: something
+that stands on the person's side, keeps their data on their own device, takes no cut of what
+they recover, and hands them the exact words and the cited right so they do not have to face it
+alone or unarmed. I am not building a product I would like to sell — I am building the thing
+that would have kept me from losing.
 
 ## Explain what the requested budget will be used for
 
