@@ -8,8 +8,11 @@ is the honest, public status of that plan.
 - Working PWA: The Pile, The Fight, Wins, The Vault; zero backend; IndexedDB storage; 24 tests.
 - **ODTS — the Open Dispute-Template Standard** (`standard/`): documented schema, JSON-Schema,
   zero-dependency reference adapter + validator.
-- **12 cited templates** in the standard, including **EU/UK jurisdiction variants** citing real
+- **15 cited templates** in the standard, including **EU/UK jurisdiction variants** citing real
   law (PSD2, Consumer Rights Directive, UK Consumer Contracts Regs 2013, DMCC Act 2024).
+- **The app's fight list is generated from the standard** (`standard/build-app-templates.mjs`) —
+  the open ODTS is the single source of truth, and CI fails on any drift. The standard is the
+  engine, not a side artifact.
 - Human contribution guide; CI running tests + the validator on every push.
 
 ## Milestone 1 — Open dispute-template standard + commons  *(grant)*

@@ -1,0 +1,41 @@
+{
+  "odts_version": "0.1",
+  "id": "price-match",
+  "version": "1.0.0",
+  "title": "Price-match / better-offer request",
+  "category": "purchases",
+  "summary": "Ask a retailer to match a lower price or refund the difference under its price-match policy.",
+  "unit": "money",
+  "est_value_hint": 40,
+  "jurisdictions": ["*"],
+  "channel": "Chat / email",
+  "goal_default": "price match or a refund of the difference",
+  "fields": [
+    { "name": "target", "label": "Retailer", "required": true },
+    { "name": "amount", "label": "Price difference", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Many retailers offer price matching or a post-purchase price adjustment within a set window.",
+      "basis": "Common retailer price-match / price-adjustment policies.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "A screenshot or link to the qualifying lower price usually suffices.",
+      "basis": "Standard evidence a price-match desk accepts.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Price-match request",
+    "Post-purchase price adjustment",
+    "Return + rebuy at the lower price"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Price match / price adjustment request",
+    "body": "To: {{target}} Support\n\nHello,\n\nI found this item at a lower price and would like to request a {{goal}}{{amount_clause}}, per your price-match policy.\n\nI can provide a screenshot / link to the qualifying offer. Please advise how to proceed.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

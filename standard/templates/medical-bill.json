@@ -1,0 +1,47 @@
+{
+  "odts_version": "0.1",
+  "id": "medical-bill",
+  "version": "1.0.0",
+  "title": "Medical bill: itemise + reduce",
+  "category": "bills",
+  "summary": "Request a fully itemised bill, check for errors, and ask about financial assistance or a settlement.",
+  "unit": "money",
+  "est_value_hint": 300,
+  "jurisdictions": ["US"],
+  "channel": "Written request to the billing office",
+  "goal_default": "I am also requesting information on financial-assistance / charity-care programs and any prompt-pay discount, and I would like to discuss a reasonable settlement or a 0% payment plan.",
+  "fields": [
+    { "name": "target", "label": "Provider / hospital", "required": true },
+    { "name": "account", "label": "Account or reference", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "You can request a fully itemised bill; errors and duplicate billing codes are common.",
+      "basis": "Standard medical-billing practice; itemised statements available on request.",
+      "jurisdiction": "US"
+    },
+    {
+      "claim": "Many hospitals have financial-assistance / charity-care programs that are under-advertised.",
+      "basis": "Non-profit hospital financial-assistance obligations (e.g. IRS 501(r)).",
+      "jurisdiction": "US"
+    },
+    {
+      "claim": "A prompt-pay cash discount is often available if you ask.",
+      "basis": "Common provider prompt-pay discount practice.",
+      "jurisdiction": "US"
+    }
+  ],
+  "ladder": [
+    "Itemised-bill request",
+    "Error review + insurance re-file",
+    "Financial-assistance / charity-care application",
+    "Negotiated settlement or 0% payment plan"
+  ],
+  "artifact": {
+    "type": "letter",
+    "subject": "Request for itemised bill and financial review{{account_suffix}}",
+    "body": "To: {{target}} Billing Office\n\nHello,\n\nPlease send a fully itemised bill listing each charge and billing code{{account_suffix}}. I want to review it for errors before payment.\n\n{{goal}}\n\nPlease pause any collection activity while this review is in progress.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal or financial advice and guarantees no outcome."
+}

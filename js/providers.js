@@ -4,24 +4,24 @@ import { TEMPLATES, templateById } from "./templates.js";
 
 /* Route a freeform errand description to the best template (offline). */
 const ROUTES = [
-  [/\b(cancel|unsubscribe|end (my )?membership|stop (my )?subscription|quit)\b/i, "cancel_sub"],
-  [/\b(charged after|still billing|after (i )?cancel|kept charging)\b/i, "charged_after_cancel"],
-  [/\b(unauthori|fraud|didn'?t authorize|double charge|charged twice|duplicate charge)\b/i, "dispute_charge"],
-  [/\b(free trial|trial (ended|converted|auto)|auto-?renew)\b/i, "trial_refund"],
-  [/\b(negotiate|lower (my )?bill|too expensive|internet bill|phone bill|cable|reduce (my )?bill|loyalty)\b/i, "negotiate_bill"],
-  [/\b(medical|hospital|doctor|clinic|itemi[sz]ed) (bill|charge)?\b/i, "medical_bill"],
-  [/\b(late fee|overdraft|waive|service fee|penalty fee)\b/i, "waive_fee"],
-  [/\b(refund|defective|broken|not as described|return|faulty)\b/i, "refund_defective"],
-  [/\b(warranty|repair|replace under)\b/i, "warranty_claim"],
-  [/\b(delete (my )?data|privacy|gdpr|ccpa|erasure|opt out)\b/i, "delete_data"],
-  [/\b(complaint|escalate|manager|ombudsman|supervisor|unresolved)\b/i, "escalate_complaint"],
-  [/\b(price match|cheaper|price adjustment|better offer)\b/i, "price_match"],
+  [/\b(cancel|unsubscribe|end (my )?membership|stop (my )?subscription|quit)\b/i, "cancel-subscription"],
+  [/\b(charged after|still billing|after (i )?cancel|kept charging)\b/i, "charged-after-cancellation"],
+  [/\b(unauthori|fraud|didn'?t authorize|double charge|charged twice|duplicate charge)\b/i, "dispute-unauthorized-charge"],
+  [/\b(free trial|trial (ended|converted|auto)|auto-?renew)\b/i, "free-trial-refund"],
+  [/\b(negotiate|lower (my )?bill|too expensive|internet bill|phone bill|cable|reduce (my )?bill|loyalty)\b/i, "negotiate-a-bill"],
+  [/\b(medical|hospital|doctor|clinic|itemi[sz]ed) (bill|charge)?\b/i, "medical-bill"],
+  [/\b(late fee|overdraft|waive|service fee|penalty fee)\b/i, "waive-a-fee"],
+  [/\b(refund|defective|broken|not as described|return|faulty)\b/i, "refund-defective-purchase"],
+  [/\b(warranty|repair|replace under)\b/i, "warranty-claim"],
+  [/\b(delete (my )?data|privacy|gdpr|ccpa|erasure|opt out)\b/i, "delete-personal-data"],
+  [/\b(complaint|escalate|manager|ombudsman|supervisor|unresolved)\b/i, "escalate-complaint"],
+  [/\b(price match|cheaper|price adjustment|better offer)\b/i, "price-match"],
 ];
 
 export function classifyErrand(text) {
   const t = String(text || "");
   for (const [re, id] of ROUTES) if (re.test(t)) return id;
-  return "escalate_complaint";
+  return "escalate-complaint";
 }
 
 /* Guess a target (company) from the text: capitalized token(s). */

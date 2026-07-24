@@ -10,7 +10,7 @@ const ok = (c, m) => { c ? pass++ : fail++; console.log(`${c ? "✓" : "✗"} ${
 const eq = (a, b, m) => ok(a === b, `${m}${a === b ? "" : `  (got ${JSON.stringify(a)}, want ${JSON.stringify(b)})`}`);
 
 console.log("— templates —");
-eq(TEMPLATES.length, 12, "12 templates");
+eq(TEMPLATES.length, 15, "15 templates (generated from ODTS)");
 let leftover = 0, empty = 0;
 for (const t of TEMPLATES) {
   const out = t.render({ name: "Cihan", target: "Acme", goal: "", account: "a@b.com", amount: "$10", date: "May 1" });
@@ -21,20 +21,20 @@ eq(leftover, 0, "no unfilled placeholders in any template");
 eq(empty, 0, "every template renders a real artifact");
 
 console.log("— routing —");
-eq(classifyErrand("cancel my Netflix membership"), "cancel_sub", "cancel routes");
-eq(classifyErrand("I was charged twice"), "dispute_charge", "double-charge routes");
-eq(classifyErrand("lower my internet bill"), "negotiate_bill", "negotiate routes");
-eq(classifyErrand("waive my late fee"), "waive_fee", "fee routes");
-eq(classifyErrand("delete my data please"), "delete_data", "gdpr routes");
-eq(classifyErrand("something totally random"), "escalate_complaint", "fallback routes");
+eq(classifyErrand("cancel my Netflix membership"), "cancel-subscription", "cancel routes");
+eq(classifyErrand("I was charged twice"), "dispute-unauthorized-charge", "double-charge routes");
+eq(classifyErrand("lower my internet bill"), "negotiate-a-bill", "negotiate routes");
+eq(classifyErrand("waive my late fee"), "waive-a-fee", "fee routes");
+eq(classifyErrand("delete my data please"), "delete-personal-data", "gdpr routes");
+eq(classifyErrand("something totally random"), "escalate-complaint", "fallback routes");
 eq(guessTarget("cancel my Netflix membership"), "Netflix", "guessTarget");
 
 console.log("— strategy & projection —");
-const strat = strategyFor("negotiate_bill");
+const strat = strategyFor("negotiate-a-bill");
 ok(strat.ladder.length >= 2 && !!strat.channel, "strategy has ladder + channel");
-const e0 = newErrand({ templateId: "cancel_sub", target: "Netflix", estValue: 180, unit: "money" });
-eq(planFor(e0, templateById("cancel_sub")).length, templateById("cancel_sub").plan.length, "plan length matches template");
-const proj = projection(e0, templateById("cancel_sub"));
+const e0 = newErrand({ templateId: "cancel-subscription", target: "Netflix", estValue: 180, unit: "money" });
+eq(planFor(e0, templateById("cancel-subscription")).length, templateById("cancel-subscription").plan.length, "plan length matches template");
+const proj = projection(e0, templateById("cancel-subscription"));
 ok(proj.estValue === 180 && proj.confidence > 0.5, "projection returns value + confidence");
 eq(fmtValue(180, "money"), "~$180", "fmtValue money");
 eq(fmtValue(2, "time"), "~2h saved", "fmtValue time");
@@ -46,18 +46,18 @@ eq(searchErrands(list, "uber").length, 1, "search by target");
 eq(searchErrands(list, "").length, 2, "empty query returns all");
 
 console.log("— agent run (offline, fast) —");
-const e = newErrand({ templateId: "waive_fee", target: "MyBank", goal: "", unit: "money", estValue: 35 });
+const e = newErrand({ templateId: "waive-a-fee", target: "MyBank", goal: "", unit: "money", estValue: 35 });
 const res = await run(e, { settings: { provider: "offline", name: "Cihan", autonomy: "confirm" }, fast: true, onLog: () => {} });
 ok(!!res.errand.artifact && res.errand.artifact.length > 40, "agent produced an artifact");
 ok(res.errand.plan.every((s) => s.done), "agent completed all plan steps");
 eq(res.errand.status, "ready", "confirm autonomy → status ready");
 ok(res.errand.log.length >= 4, "agent produced a run log");
-const eAuto = newErrand({ templateId: "cancel_sub", target: "X", unit: "money" });
+const eAuto = newErrand({ templateId: "cancel-subscription", target: "X", unit: "money" });
 const rAuto = await run(eAuto, { settings: { provider: "offline", autonomy: "auto" }, fast: true, onLog: () => {} });
 eq(rAuto.errand.status, "sent", "auto autonomy → status sent");
 
 console.log("— offline draft via provider —");
-const d = await draftArtifact({ templateId: "cancel_sub", fields: { name: "Cihan", target: "Netflix", goal: "" }, settings: { provider: "offline" } });
+const d = await draftArtifact({ templateId: "cancel-subscription", fields: { name: "Cihan", target: "Netflix", goal: "" }, settings: { provider: "offline" } });
 ok(d.source === "offline" && d.text.includes("Netflix"), "draftArtifact offline fills target");
 
 console.log(`\n${fail === 0 ? "ALL PASS" : "SOME FAILED"} — ${pass} passed, ${fail} failed`);

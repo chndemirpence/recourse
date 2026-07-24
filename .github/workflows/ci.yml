@@ -15,6 +15,8 @@ jobs:
       - name: Syntax check
         run: for f in js/*.js sw.js standard/*.mjs; do node --check "$f"; done
         shell: bash
+      - name: App fights are generated from the standard (no drift)
+        run: node standard/build-app-templates.mjs && git diff --exit-code js/templates.js
       - name: App tests
         run: node test/node_smoke.mjs
       - name: Validate ODTS templates

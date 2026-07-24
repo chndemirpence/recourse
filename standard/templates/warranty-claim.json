@@ -1,0 +1,41 @@
+{
+  "odts_version": "0.1",
+  "id": "warranty-claim",
+  "version": "1.0.0",
+  "title": "Warranty / repair claim",
+  "category": "purchases",
+  "summary": "Claim a repair or replacement for a product that failed within its warranty period.",
+  "unit": "money",
+  "est_value_hint": 120,
+  "jurisdictions": ["*", "EU", "UK"],
+  "channel": "Email to the warranty department",
+  "goal_default": "Please arrange a repair or replacement under warranty and confirm the process and timeline.",
+  "fields": [
+    { "name": "target", "label": "Manufacturer / seller", "required": true },
+    { "name": "date", "label": "Purchase date", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Keep your proof of purchase and note the warranty period.",
+      "basis": "Evidentiary best practice for a warranty claim.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Statutory rights for faulty goods may extend beyond the stated manufacturer warranty.",
+      "basis": "EU/UK consumer sales law (e.g. UK Consumer Rights Act 2015; EU Directive 2019/771).",
+      "jurisdiction": "EU"
+    }
+  ],
+  "ladder": [
+    "Warranty claim to the manufacturer / seller",
+    "Manufacturer escalation",
+    "Consumer-protection complaint"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Warranty claim — repair or replacement",
+    "body": "To: {{target}} Warranty Department\n\nHello,\n\nMy product developed a fault{{date_clause}} within its warranty period. {{goal}}\n\nI can provide proof of purchase and photos/video of the fault on request.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}
