@@ -1,0 +1,42 @@
+{
+  "odts_version": "0.1",
+  "id": "dispute-unauthorized-charge-eu",
+  "version": "1.0.0",
+  "title": "Dispute an unauthorised charge (EU — PSD2)",
+  "category": "billing",
+  "summary": "EU variant: ask your own bank / payment service provider to refund an unauthorised transaction under PSD2.",
+  "unit": "money",
+  "est_value_hint": 80,
+  "jurisdictions": ["EU"],
+  "channel": "Your bank / payment service provider (written)",
+  "goal_default": "Please refund this unauthorised payment transaction and confirm in writing.",
+  "fields": [
+    { "name": "target", "label": "Your bank / payment provider", "required": true },
+    { "name": "amount", "label": "Transaction amount", "required": false },
+    { "name": "date", "label": "Transaction date", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "If you notify your provider of an unauthorised transaction without undue delay, it must refund the amount — in principle by the end of the following business day.",
+      "basis": "Payment Services Directive 2 (Directive (EU) 2015/2366), Article 73.",
+      "jurisdiction": "EU"
+    },
+    {
+      "claim": "Your liability for unauthorised transactions is limited, and nil once you have reported the loss or unauthorised use.",
+      "basis": "PSD2 (Directive (EU) 2015/2366), Article 74.",
+      "jurisdiction": "EU"
+    }
+  ],
+  "ladder": [
+    "Written notification to your bank / payment provider (cite PSD2)",
+    "Formal complaint to the provider",
+    "National financial ombudsman / competent authority under PSD2"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Unauthorised payment transaction{{amount_clause}} — refund requested (PSD2)",
+    "body": "To: {{target}} — Disputes / Payment Services\n\nHello,\n\nI am reporting an unauthorised payment transaction{{amount_clause}}{{date_clause}} on my account. I did not authorise it and am notifying you without undue delay.\n\nUnder Article 73 of the revised Payment Services Directive (Directive (EU) 2015/2366), please refund this transaction, in principle by the end of the following business day, and restore my account to the state it would have been in. {{goal}}\n\nPlease provide a reference for this report.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information about your rights, not legal advice, and guarantees no outcome. Exact handling can depend on your provider and circumstances."
+}

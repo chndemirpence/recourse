@@ -1,0 +1,40 @@
+{
+  "odts_version": "0.1",
+  "id": "free-trial-refund-eu",
+  "version": "1.0.0",
+  "title": "Free-trial auto-renewal refund (EU)",
+  "category": "subscriptions",
+  "summary": "EU variant: a free trial converted to paid without the clear, express consent EU law requires — request a full refund.",
+  "unit": "money",
+  "est_value_hint": 70,
+  "jurisdictions": ["EU"],
+  "channel": "Email / in-app",
+  "goal_default": "Please refund the charge in full and cancel the plan.",
+  "fields": [
+    { "name": "target", "label": "Company", "required": true },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "For a distance contract by electronic means, the trader must make the obligation to pay clear and obtain your express acknowledgement; without it you are not bound by the contract or charge.",
+      "basis": "Consumer Rights Directive (Directive 2011/83/EU), Article 8(2).",
+      "jurisdiction": "EU"
+    },
+    {
+      "claim": "Hiding or obscuring that a trial converts to a paid plan can be a misleading commercial practice.",
+      "basis": "Unfair Commercial Practices Directive (Directive 2005/29/EC).",
+      "jurisdiction": "EU"
+    }
+  ],
+  "ladder": [
+    "Refund request citing the Consumer Rights Directive",
+    "Chargeback for an undisclosed auto-renewal",
+    "National consumer authority / European Consumer Centre"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Refund — free trial converted without clear, express consent (EU)",
+    "body": "To: {{target}} Support\n\nHello,\n\nMy free trial converted to a paid plan without the clear, conspicuous information and express consent required for a distance contract by electronic means under Article 8(2) of the Consumer Rights Directive (2011/83/EU). {{goal}}\n\nPlease point to where explicit consent to be charged was obtained; otherwise I consider that I am not bound by this charge and will seek a chargeback and, if needed, contact the relevant consumer authority.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information about your rights, not legal advice, and guarantees no outcome. Application depends on the trader's disclosures and your circumstances."
+}

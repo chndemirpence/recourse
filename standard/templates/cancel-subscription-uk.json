@@ -1,0 +1,47 @@
+{
+  "odts_version": "0.1",
+  "id": "cancel-subscription-uk",
+  "version": "1.0.0",
+  "title": "Cancel a subscription (UK)",
+  "category": "subscriptions",
+  "summary": "UK variant: cancel a distance-contract subscription, citing the 14-day cancellation right and the UK's strengthened subscription rules.",
+  "unit": "money",
+  "est_value_hint": 180,
+  "jurisdictions": ["UK"],
+  "channel": "Email / in-app + written record",
+  "goal_default": "Please cancel my subscription, stop all future billing, and confirm in writing with an effective date.",
+  "fields": [
+    { "name": "target", "label": "Company / provider", "required": true },
+    { "name": "account", "label": "Account or reference", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "For a distance contract, you generally have a 14-day right to cancel from the day it was entered into.",
+      "basis": "The Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013.",
+      "jurisdiction": "UK"
+    },
+    {
+      "claim": "UK law is strengthening subscription rules — clearer information, cancellation reminders, and an easy exit.",
+      "basis": "Digital Markets, Competition and Consumers Act 2024 (subscription contracts provisions).",
+      "jurisdiction": "UK"
+    },
+    {
+      "claim": "If you are billed after a confirmed cancellation, your card issuer can reverse it via chargeback.",
+      "basis": "Card-scheme chargeback rules; Section 75 protection may also apply for credit-card purchases.",
+      "jurisdiction": "UK"
+    }
+  ],
+  "ladder": [
+    "In-app / written cancellation to the provider",
+    "Formal complaint citing the 2013 Regulations",
+    "Card-issuer chargeback if billed after cancellation",
+    "Trading Standards / Citizens Advice consumer service"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Cancellation of my subscription{{account_suffix}} — written notice (UK)",
+    "body": "To: {{target}} Billing / Support\n\nHello,\n\nI am writing to cancel my subscription{{account_suffix}}. {{goal}}\n\nPlease treat this as formal written notice. Where a 14-day cancellation right under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 applies, I am exercising it. If any charge is taken after this notice, I will ask my card issuer to reverse it.\n\nPlease reply within 5 business days with written confirmation and the effective date.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information about your rights, not legal advice, and guarantees no outcome. Whether the 14-day right applies depends on the contract and timing."
+}
