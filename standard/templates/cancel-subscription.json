@@ -1,0 +1,47 @@
+{
+  "odts_version": "0.1",
+  "id": "cancel-subscription",
+  "version": "1.0.0",
+  "title": "Cancel a subscription",
+  "category": "subscriptions",
+  "summary": "Written cancellation with a paper trail; chargeback fallback if billed after.",
+  "unit": "money",
+  "est_value_hint": 180,
+  "jurisdictions": ["*", "US", "EU", "UK"],
+  "channel": "Email / in-app + written record",
+  "goal_default": "Please stop all future billing and confirm the cancellation in writing with a confirmation number and effective date.",
+  "fields": [
+    { "name": "target", "label": "Company / provider", "required": true, "placeholder": "e.g. Acme" },
+    { "name": "account", "label": "Account or reference", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "Charges applied after a confirmed cancellation are routinely reversed by card issuers.",
+      "basis": "Card-scheme chargeback rules covering cancelled or unauthorised recurring services.",
+      "jurisdiction": "*"
+    },
+    {
+      "claim": "Cancellation flows that require phone calls or hide the cancel option are dark patterns under regulatory scrutiny.",
+      "basis": "FTC negative-option / 'click to cancel' rulemaking.",
+      "jurisdiction": "US"
+    },
+    {
+      "claim": "Keep the confirmation number and a screenshot as proof of the cancellation.",
+      "basis": "Evidentiary best practice for a later dispute.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Support / in-app cancel",
+    "Written cancellation to billing@",
+    "Card-issuer chargeback if charged after a confirmed cancel",
+    "State AG / FTC (or national consumer regulator) complaint for dark-pattern cancel walls"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Cancellation of my subscription{{account_suffix}} — written notice",
+    "body": "To: {{target}} Billing/Support\n\nHello,\n\nI am writing to cancel my subscription{{account_suffix}}, effective immediately. {{goal}}\n\nPlease treat this email as formal written notice. I am not requesting a retention offer. If any charge is applied after this notice, I will dispute it with my card issuer as a cancelled service.\n\nPlease reply within 5 business days with written confirmation.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

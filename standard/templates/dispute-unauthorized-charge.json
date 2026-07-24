@@ -1,0 +1,42 @@
+{
+  "odts_version": "0.1",
+  "id": "dispute-unauthorized-charge",
+  "version": "1.0.0",
+  "title": "Dispute an unauthorised charge",
+  "category": "billing",
+  "summary": "Notify the merchant and file an issuer dispute in parallel for a duplicate or unauthorised charge.",
+  "unit": "money",
+  "est_value_hint": 60,
+  "jurisdictions": ["*", "US", "EU", "UK"],
+  "channel": "Card issuer dispute + merchant email",
+  "goal_default": "Please reverse this charge and confirm in writing.",
+  "fields": [
+    { "name": "target", "label": "Merchant", "required": true },
+    { "name": "amount", "label": "Charge amount", "required": false, "placeholder": "e.g. $49.00" },
+    { "name": "date", "label": "Charge date", "required": false },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "You generally have chargeback rights for unauthorised or duplicate card charges.",
+      "basis": "Card-scheme chargeback rules; US Fair Credit Billing Act for credit cards.",
+      "jurisdiction": "US"
+    },
+    {
+      "claim": "Filing with the merchant and the card issuer in parallel speeds resolution.",
+      "basis": "Standard dispute-handling practice across issuers.",
+      "jurisdiction": "*"
+    }
+  ],
+  "ladder": [
+    "Merchant refund request",
+    "Card-issuer dispute / chargeback",
+    "Consumer regulator complaint if there is a pattern of unauthorised billing"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Unauthorised charge{{account_suffix}} — refund requested",
+    "body": "To: {{target}} Support\n\nHello,\n\nI identified a charge{{amount_clause}}{{date_clause}} that I did not authorise. {{goal}}\n\nIf I do not receive a resolution within 7 business days, I will file a formal dispute with my card issuer. Please provide a case number for this request.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}

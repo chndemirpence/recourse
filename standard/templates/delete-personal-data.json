@@ -1,0 +1,45 @@
+{
+  "odts_version": "0.1",
+  "id": "delete-personal-data",
+  "version": "1.0.0",
+  "title": "Delete my personal data (GDPR / CCPA)",
+  "category": "privacy",
+  "summary": "Exercise the right to erasure: ask a controller to delete your personal data and confirm.",
+  "unit": "time",
+  "est_value_hint": 1,
+  "jurisdictions": ["EU", "UK", "US-CA"],
+  "channel": "Privacy / DPO email",
+  "goal_default": "Please erase my personal data, stop processing it, and confirm completion in writing.",
+  "fields": [
+    { "name": "target", "label": "Company / controller", "required": true },
+    { "name": "data_ref", "label": "Account email or identifier the data is under", "required": true, "placeholder": "e.g. jane@example.com" },
+    { "name": "name", "label": "Your name", "required": false }
+  ],
+  "rights": [
+    {
+      "claim": "You have a right to erasure of your personal data ('right to be forgotten').",
+      "basis": "GDPR Article 17 (EU/UK).",
+      "jurisdiction": "EU"
+    },
+    {
+      "claim": "You can request deletion of personal information a business has collected about you.",
+      "basis": "California Consumer Privacy Act (CCPA), right to delete.",
+      "jurisdiction": "US-CA"
+    },
+    {
+      "claim": "The controller must respond within the statutory window (e.g. one month under GDPR).",
+      "basis": "GDPR Article 12(3).",
+      "jurisdiction": "EU"
+    }
+  ],
+  "ladder": [
+    "Privacy request to the DPO / privacy team",
+    "Supervisory authority (DPA) or state Attorney General complaint if ignored"
+  ],
+  "artifact": {
+    "type": "email",
+    "subject": "Request to delete my personal data",
+    "body": "To: {{target}} Privacy Team / DPO\n\nHello,\n\nI am exercising my right to request deletion of the personal data associated with {{data_ref}}. {{goal}}\n\nPlease confirm receipt and the expected completion date within the timeframe required by applicable law.\n\nSincerely,\n{{name}}"
+  },
+  "disclaimer": "This is information to help you write your own request. It is not legal advice and guarantees no outcome."
+}
