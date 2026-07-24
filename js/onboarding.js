@@ -12,7 +12,7 @@ export function runOnboarding(ctx) {
 
   const cards = [
     () => card({ emoji: "✓", title: `Meet <span class="grad">Recourse</span>`,
-      body: "Your AI chief of staff. It kills the life-admin you hate and fights the companies that waste your time and money — bills, subscriptions, refunds, disputes, fees.",
+      body: "a local-first assistant for your consumer rights. It kills the life-admin you hate and fights the companies that waste your time and money — bills, subscriptions, refunds, disputes, fees.",
       extra: el("p", { class: "muted small", text: "Assign, don't ask. Your recourse — on your device." }) }),
     () => {
       const input = el("input", { class: "field", value: name, placeholder: "Your name", onInput: (e) => { name = e.target.value; } });
