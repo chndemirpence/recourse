@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recourse · Self-Test</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0b0f14; color: #e9eef5; margin: 0; padding: 24px; }
+    h1 { font-size: 20px; letter-spacing: 2px; }
+    .row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #1e2a38; border-radius: 12px; margin: 8px 0; background: #141c26; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+    .ok { background: #34d399; } .bad { background: #fb7185; } .warn { background: #f5c451; }
+    .name { font-weight: 600; } .detail { color: #9aa8ba; font-size: 13px; margin-left: auto; text-align: right; }
+    a { color: #34d399; }
+  </style>
+</head>
+<body>
+  <h1>✓ Recourse SELF-TEST</h1>
+  <p class="detail" style="text-align:left">Checks your browser + Recourse's core logic. <a href="../index.html">← Back to app</a></p>
+  <div id="out"></div>
+  <script type="module">
+    const out = document.getElementById("out");
+    const row = (n, s, d) => { const c = s === true ? "ok" : s === "warn" ? "warn" : "bad";
+      const e = document.createElement("div"); e.className = "row";
+      e.innerHTML = `<span class="dot ${c}"></span><span class="name">${n}</span><span class="detail">${d || ""}</span>`; out.append(e); };
+
+    row("IndexedDB (errands/vault/wins)", typeof indexedDB !== "undefined", "");
+    let ls = false; try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); ls = true; } catch {}
+    row("localStorage (settings)", ls, ls ? "ok" : "blocked");
+    row("Canvas (win cards)", !!document.createElement("canvas").getContext, "");
+    row("Clipboard API (copy artifacts)", !!(navigator.clipboard && navigator.clipboard.writeText) ? true : "warn", "fallback available");
+    row("Secure context (PWA install)", window.isSecureContext ? true : "warn", window.isSecureContext ? "secure" : "use https to install");
+
+    try {
+      const { TEMPLATES, templateById } = await import("../js/templates.js");
+      row("Template library", TEMPLATES.length === 12, `${TEMPLATES.length} fights loaded`);
+      const art = templateById("cancel_sub").render({ name: "You", target: "Netflix", goal: "" });
+      row("Artifact render", art.includes("Netflix"), `"${art.slice(0, 34)}…"`);
+      const { classifyErrand } = await import("../js/providers.js");
+      row("Errand routing", classifyErrand("cancel my gym") === "cancel_sub", "cancel my gym → cancel_sub");
+      const { run } = await import("../js/agent.js");
+      const { newErrand } = await import("../js/store.js");
+      const e = newErrand({ templateId: "waive_fee", target: "Bank" });
+      const r = await run(e, { settings: { provider: "offline", autonomy: "confirm" }, fast: true, onLog: () => {} });
+      row("Agent run", !!r.errand.artifact && r.errand.status === "ready", `status: ${r.errand.status}`);
+    } catch (err) { row("Module import", false, String(err.message || err) + " — run via a server"); }
+
+    row("Self-test complete", true, "review any red rows");
+  </script>
+</body>
+</html>
