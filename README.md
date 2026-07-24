@@ -2,6 +2,12 @@
 
 **Know your recourse. Keep your data.**
 
+[![CI](https://github.com/chndemirpence/recourse/actions/workflows/ci.yml/badge.svg)](https://github.com/chndemirpence/recourse/actions/workflows/ci.yml)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
+[![Live demo](https://img.shields.io/badge/demo-try%20it-brightgreen)](https://chndemirpence.github.io/recourse/)
+
+**Try it live:** https://chndemirpence.github.io/recourse/ · runs entirely in your browser, nothing leaves your device.
+
 Recourse is a free, local-first assistant that helps ordinary people push back on the
 institutions that waste their time and money — unfair bills, silent auto-renewals,
 refused refunds, junk fees, wrongful charges, data-deletion requests. It drafts the
